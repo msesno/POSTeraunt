@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>POSTaurant - Table Res</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1>POSTaurant!</h1>
+      <h3>The greatest restaurant reservation site in the galaxy!</h3>
+      <hr>
+      <a href="/reserve">
+        <button class="btn btn-success btn-lg">
+          <span class="fa fa-eye"></span> Add Reservation</button>
+      </a>
+      <a href="/tables">
+        <button class="btn btn-info btn-lg">
+          <span class="fa fa-th-list"></span> View Reservations</button>
+      </a>
+    </div>
+    <div class="row">
+
+      <div class="col-lg-12">
+
+        <div class="card">
+          <div class="card-header">
+            Add Reservation
+          </div>
+          <div class="card-body">
+            <form role="form">
+
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name">
+              </div>
+
+              <div class="form-group">
+                <label for="role">Phone</label>
+                <input type="text" class="form-control" id="phone">
+              </div>
+
+              <div class="form-group">
+                <label for="age">Email</label>
+                <input type="text" class="form-control" id="email">
+              </div>
+
+              <div class="form-group">
+                <label for="tableid">Table Id</label>
+                <input type="text" class="form-control" id="tableid">
+              </div>
+
+            </form>
+            <br>
+            <div class="text-right">
+              <button type="submit" class="btn btn-primary btn-md" id="add-btn">
+                <span class="fa fa-fire"></span> Add my reservation for foodz!</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    // Question: What does this code do?
+    $("#add-btn").on("click", function(event) {
+      event.preventDefault();
+
+      var newtable = {
+        name: $("#name").val().trim(),
+        phone: $("#phone").val().trim(),
+        email: $("#email").val().trim(),
+        tableid: $("#tableid").val().trim()
+      };
+
+      // Question: What does this code do??
+      $.post("/api/tables", newtable)
+        .then(function(data) {
+          console.log(data);
+          alert("Adding table...");
+        });
+
+    });
+
+  </script>
+</body>
+
+</html>
